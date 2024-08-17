@@ -6,6 +6,8 @@ To use the `YoutubeTranscript` package, create a new instance of the class by pa
 
 ```php
 
+use boonstoppel\YoutubeTranscript\YoutubeTranscript;
+
 $videoId = 'your-youtube-video-id';
 $originalLang = 'zh-Hans';
 $translateLang = 'en';
