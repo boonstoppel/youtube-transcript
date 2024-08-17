@@ -1,0 +1,23 @@
+{
+    "name": "your-vendor-name/youtube-transcript",
+    "description": "A Laravel package to fetch and translate YouTube video transcripts.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "YourVendorName\\YoutubeTranscript\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.3",
+        "illuminate/support": "^8.0|^9.0|^10.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "YourVendorName\\YoutubeTranscript\\YoutubeTranscriptServiceProvider"
+            ]
+        }
+    }
+}
