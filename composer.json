@@ -1,11 +1,11 @@
 {
-    "name": "your-vendor-name/youtube-transcript",
+    "name": "boonstoppel/youtube-transcript",
     "description": "A Laravel package to fetch and translate YouTube video transcripts.",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "YourVendorName\\YoutubeTranscript\\": "src/"
+            "boonstoppel\\YoutubeTranscript\\": "src/"
         }
     },
     "require": {
@@ -16,7 +16,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "YourVendorName\\YoutubeTranscript\\YoutubeTranscriptServiceProvider"
+                "boonstoppel\\YoutubeTranscript\\YoutubeTranscriptServiceProvider"
             ]
         }
     }
