@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendorName\YoutubeTranscript;
+namespace boonstoppel\YoutubeTranscript;
 
 use Illuminate\Support\ServiceProvider;
 
