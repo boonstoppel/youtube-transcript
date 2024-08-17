@@ -23,9 +23,11 @@ class YoutubeTranscript
         {
             $this->videoId = $videoId;
 
-            $this->originalLang = $originalLang;
+            $allTranscriptLists = $this->fetchTranscriptList();
 
-            $this->transcriptList = $this->fetchTranscriptList();
+            $this->originalLang = $originalLang ? $originalLang : array_key_first($allTranscriptLists);
+
+            $this->transcriptList = $allTranscriptLists[$this->originalLang];
         }
 
         public function fetchTranscriptData($lang = null) 
@@ -86,9 +88,9 @@ class YoutubeTranscript
                 )
             );
 
-            return data_get(data_get($transcriptList, 'manually_created_transcripts', 
+            return data_get($transcriptList, 'manually_created_transcripts', 
                 data_get($transcriptList, 'generated_transcripts')
-            ), $this->originalLang);
+            );
         }
     
         private function fetchVideoHtml() 
