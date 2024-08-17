@@ -16,7 +16,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "YoutubeTranscript\\YoutubeTranscriptServiceProvider"
+                "boonstoppel\\YoutubeTranscript\\YoutubeTranscriptServiceProvider"
             ]
         }
     }
