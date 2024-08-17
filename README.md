@@ -9,10 +9,9 @@ To use the `YoutubeTranscript` package, create a new instance of the class by pa
 use boonstoppel\YoutubeTranscript\YoutubeTranscript;
 
 $videoId = 'your-youtube-video-id';
-$originalLang = 'zh-Hans';
 $translateLang = 'en';
 
-$yt = new YoutubeTranscript($videoId, $originalLang);
+$yt = new YoutubeTranscript($videoId);
 
 $data = [
     'original' => $yt->fetchTranscriptData(),
