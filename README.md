@@ -17,3 +17,26 @@ $data = [
     'original' => $yt->fetchTranscriptData(),
     'translated' => $yt->fetchTranscriptData($translateLang)
 ];
+
+```
+
+Or with dependency injection:
+
+
+```php
+
+use App\Http\Controllers\Controller;
+use boonstoppel\YoutubeTranscript\YoutubeTranscript;
+
+class TranscriptController extends Controller
+{
+    public function __invoke(YoutubeTranscript $yt)
+    {
+        $yt->videoId = 'YOUR_VIDEO_ID';
+
+        return [
+            'original' => $yt->fetchTranscriptData(),
+            'translated' => $yt->fetchTranscriptData(request('translate_lang'))
+        ];
+    }
+}

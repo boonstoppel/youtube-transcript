@@ -7,31 +7,30 @@ use Exception;
 
 class YoutubeTranscript
 {   
+        public $videoId;
+        
         private static $youtubeBaseUrl = 'https://www.youtube.com/watch';
 
         private static $consentBaseUrl = 'https://consent.youtube.com/s';
 
-        
-        private $videoId;
+        private $transcriptList = [];
+
+        private $currentVideoId = null;
 
         private $originalLang;
 
-        private $transcriptList = [];
-
     
-        public function __construct($videoId, $originalLang = null)
+        public function __construct($videoId = null)
         {
             $this->videoId = $videoId;
 
-            $allTranscriptLists = $this->fetchTranscriptList();
-
-            $this->originalLang = $originalLang ? $originalLang : array_key_first($allTranscriptLists);
-
-            $this->transcriptList = $allTranscriptLists[$this->originalLang];
+            $this->initTranscriptList();
         }
 
         public function fetchTranscriptData($lang = null) 
         {
+            $this->initTranscriptList();
+
             if (!$lang) {
                 $lang = $this->originalLang;
                 $transcript = $this->transcriptList;
@@ -57,6 +56,28 @@ class YoutubeTranscript
             }
     
             return self::parseTranscriptionData($transcriptData);
+        }
+
+        public function setYoutubeId($videoId) {
+            if ($videoId != $this->currentVideoId) {
+                $this->transcriptList = null;
+            }
+
+            $this->videoId = $videoId;
+        }
+
+        private function initTranscriptList() {
+            if (!$this->videoId || ($this->videoId == $this->currentVideoId && $this->transcriptList)) {
+                return;
+            }
+
+            $transcriptLists = $this->fetchTranscriptList();
+
+            $this->originalLang = array_key_first($transcriptLists);
+
+            $this->currentVideoId = $this->videoId;
+        
+            $this->transcriptList = data_get($transcriptLists, $this->originalLang);
         }
 
         private function translateTranscript($targetLanguageCode) 
